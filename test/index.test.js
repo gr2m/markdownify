@@ -23,12 +23,8 @@ describe('markdownify', () => {
     nock('https://api.github.com')
       .post('/app/installations/321696/access_tokens')
       .reply(200, {token: 'test'})
-
-    nock('https://api.github.com')
       .get('/repos/hiimbex/testing-things/pulls/112/files')
       .reply(200, prFiles.data)
-
-    nock('https://api.github.com')
       .patch('/repos/hiimbex/testing-things/pulls/112', (body) => {
         expect(body).toMatchObject({body: '\n\n-----\n[View rendered README.md](https://github.com/hiimbex/testing-things/blob/hiimbex-patch-41/README.md)'})
         return true
@@ -42,8 +38,6 @@ describe('markdownify', () => {
     nock('https://api.github.com')
       .post('/app/installations/321696/access_tokens')
       .reply(200, {token: 'test'})
-
-    nock('https://api.github.com')
       .get('/repos/hiimbex/testing-things/pulls/114/files')
       .reply(200, prFilesFail.data)
 
